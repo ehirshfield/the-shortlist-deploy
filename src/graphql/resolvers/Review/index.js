@@ -13,10 +13,12 @@ exports.reviewResolvers = void 0;
 const mongodb_1 = require("mongodb");
 const api_1 = require("../../../lib/api");
 const types_1 = require("../../../lib/types");
-const types_2 = require("./types");
 const utils_1 = require("../../../lib/utils");
-const verifyAddReviewInput = ({ title, body, type, rating, }) => {
+const verifyAddReviewInput = ({ title, body, type, rating, subtitle, }) => {
     if (title.length > 100) {
+        throw new Error('Review title must be under 100 characters');
+    }
+    if (subtitle.length > 200) {
         throw new Error('Review title must be under 100 characters');
     }
     if (body.length > 9000) {
@@ -45,9 +47,9 @@ exports.reviewResolvers = {
                 throw new Error(`Failed to query reviews: ${error}`);
             }
         }),
-        reviews: (_root, { location, filter, limit, page }, { db }) => __awaiter(void 0, void 0, void 0, function* () {
+        reviews: (_root, { location, filter, typesFilter, limit, page }, { db }) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const query = {};
+                let query = {};
                 const data = {
                     region: null,
                     total: 0,
@@ -69,16 +71,13 @@ exports.reviewResolvers = {
                     const adminText = admin ? `${admin}, ` : '';
                     data.region = `${cityText}${adminText}${country}`;
                 }
-                let cursor = yield db.reviews.find(query);
-                if (filter && filter === types_2.ReviewsFilter.RATING_LOW_TO_HIGH) {
-                    cursor = cursor.sort({
-                        rating: 1,
-                    });
+                if (typesFilter) {
+                    const newQuery = utils_1.typeQuery(typesFilter);
+                    query = Object.assign(Object.assign({}, query), newQuery);
                 }
-                if (filter && filter === types_2.ReviewsFilter.RATING_HIGH_TO_LOW) {
-                    cursor = cursor.sort({
-                        rating: -1,
-                    });
+                let cursor = yield db.reviews.find(query);
+                if (filter) {
+                    cursor = utils_1.filterSort(cursor, filter);
                 }
                 cursor = cursor.skip(page > 0 ? (page - 1) * limit : 0);
                 cursor = cursor.limit(limit);

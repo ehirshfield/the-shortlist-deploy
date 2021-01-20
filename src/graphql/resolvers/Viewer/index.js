@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.viewerResolvers = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const Google_1 = require("../../../lib/api/Google");
+const utils_1 = require("../../../lib/utils");
 const cookieOptions = {
     httpOnly: true,
     sameSite: true,
@@ -95,18 +96,23 @@ exports.viewerResolvers = {
                 const code = input ? input.code : null;
                 const token = crypto_1.default.randomBytes(16).toString('hex');
                 // Something is up with the xcsrf and this token being out of sync
-                console.log('crypto token :>> ', token);
+                // console.log('crypto token :>> ', token);
                 const viewer = code
                     ? yield logInViaGoogle(code, token, db, res)
                     : yield logInViaCookie(token, db, req, res);
                 if (!viewer) {
-                    return { didRequest: true };
+                    return { didRequest: true, authorized: false };
+                }
+                const user = yield utils_1.authorize(db, req);
+                if (user && user._id === viewer._id) {
+                    viewer.authorized = true;
                 }
                 return {
                     _id: viewer._id,
                     token: viewer.token,
                     avatar: viewer.avatar,
                     didRequest: true,
+                    authorized: viewer.authorized || false,
                 };
             }
             catch (error) {
@@ -116,7 +122,7 @@ exports.viewerResolvers = {
         logOut: (_root, _args, { res }) => {
             try {
                 res.clearCookie('viewer', cookieOptions);
-                return { didRequest: true };
+                return { didRequest: true, authorized: false };
             }
             catch (error) {
                 throw new Error(`Failed to log out: ${error}`);

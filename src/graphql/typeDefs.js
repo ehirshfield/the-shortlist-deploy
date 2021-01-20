@@ -11,6 +11,13 @@ exports.typeDefs = apollo_server_express_1.gql `
     enum ReviewsFilter {
         RATING_LOW_TO_HIGH
         RATING_HIGH_TO_LOW
+        NEWEST
+    }
+
+    enum TypesFilter {
+        ALL
+        RESTAURANT
+        RECIPE
     }
 
     type User {
@@ -24,6 +31,7 @@ exports.typeDefs = apollo_server_express_1.gql `
     type Review {
         id: ID!
         title: String!
+        subtitle: String!
         author: User!
         image: String!
         body: String!
@@ -34,6 +42,7 @@ exports.typeDefs = apollo_server_express_1.gql `
         url: String
         country: String
         admin: String
+        highlights: [String!]
     }
 
     type Reviews {
@@ -47,6 +56,7 @@ exports.typeDefs = apollo_server_express_1.gql `
         token: String
         avatar: String
         didRequest: Boolean!
+        authorized: Boolean!
     }
 
     input LogInInput {
@@ -55,12 +65,14 @@ exports.typeDefs = apollo_server_express_1.gql `
 
     input addReviewInput {
         title: String!
+        subtitle: String!
         body: String!
         image: String!
         type: ReviewType!
         rating: Int!
         url: String
         address: String
+        highlights: [String!]
     }
 
     type Query {
@@ -70,6 +82,7 @@ exports.typeDefs = apollo_server_express_1.gql `
         reviews(
             location: String
             filter: ReviewsFilter!
+            typesFilter: TypesFilter!
             limit: Int!
             page: Int!
         ): Reviews!

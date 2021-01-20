@@ -22,7 +22,7 @@
 		"build:client": "cd ../the-shortlist-client/ && npm run build && mv build/ ../the-shortlist-deploy/src/the-shortlist-client/",
 		"build:server": "cd ../the-shortlist-server/ && npm run build",
 		"build": "npm run build:server && npm run build:client",
-		"start": "node src/index.js"
-	},
-	"heroku-run-build-script": false
+		"start": "node src/index.js",
+		"heroku-postbuild": ""
+	}
 }

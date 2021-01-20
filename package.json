@@ -23,5 +23,6 @@
 		"build:server": "cd ../the-shortlist-server/ && npm run build",
 		"build": "npm run build:server && npm run build:client",
 		"start": "node src/index.js"
-	}
+	},
+	"heroku-run-build-script": false
 }

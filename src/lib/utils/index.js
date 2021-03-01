@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.typeQuery = exports.filterSort = exports.authorize = void 0;
+exports.typeQuery = exports.filterSort = exports.authorizeToken = exports.authorize = void 0;
 const types_1 = require("../../graphql/resolvers/Review/types");
 const authorizedUsers = [
     process.env.USER_TOM,
@@ -18,11 +18,22 @@ const authorizedUsers = [
 ];
 exports.authorize = (db, req) => __awaiter(void 0, void 0, void 0, function* () {
     let viewer = null;
-    // const token = req.get('X-CSRF-TOKEN');
     const userArray = authorizedUsers.filter((id) => id === req.signedCookies.viewer);
     if (userArray.length === 1 && userArray[0] === req.signedCookies.viewer) {
         viewer = yield db.users.findOne({
             _id: req.signedCookies.viewer,
+        });
+    }
+    return viewer;
+});
+exports.authorizeToken = (db, req) => __awaiter(void 0, void 0, void 0, function* () {
+    let viewer = null;
+    const token = req.get('X-CSRF-TOKEN');
+    const userArray = authorizedUsers.filter((id) => id === req.signedCookies.viewer);
+    if (userArray.length === 1 && userArray[0] === req.signedCookies.viewer) {
+        viewer = yield db.users.findOne({
+            _id: req.signedCookies.viewer,
+            token,
         });
     }
     return viewer;
@@ -51,6 +62,8 @@ exports.typeQuery = (typeFilter) => {
             return { type: types_1.TypesFilter.RECIPE };
         case types_1.TypesFilter.RESTAURANT:
             return { type: types_1.TypesFilter.RESTAURANT };
+        case types_1.TypesFilter.PRODUCT:
+            return { type: types_1.TypesFilter.PRODUCT };
         case types_1.TypesFilter.ALL:
             return {};
         default:

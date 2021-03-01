@@ -21,7 +21,7 @@
 	},
 	"scripts": {
 		"build:client": "cd ../the-shortlist-client/ && npm run build && mv build/ ../the-shortlist-deploy/src/the-shortlist-client/",
-		"build:server": "cd ../the-shortlist-server/ && npm run build",
+		"build:server": "rm -rf src/* && cd ../the-shortlist-server/ && npm run build",
 		"build": "npm run build:server && npm run build:client",
 		"start": "node src/index.js",
 		"heroku-postbuild": ""

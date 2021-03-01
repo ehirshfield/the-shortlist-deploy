@@ -5,4 +5,5 @@ var ReviewType;
 (function (ReviewType) {
     ReviewType["Recipe"] = "RECIPE";
     ReviewType["Restaurant"] = "RESTAURANT";
+    ReviewType["Product"] = "PRODUCT";
 })(ReviewType = exports.ReviewType || (exports.ReviewType = {}));

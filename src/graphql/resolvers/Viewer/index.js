@@ -95,8 +95,6 @@ exports.viewerResolvers = {
             try {
                 const code = input ? input.code : null;
                 const token = crypto_1.default.randomBytes(16).toString('hex');
-                // Something is up with the xcsrf and this token being out of sync
-                // console.log('crypto token :>> ', token);
                 const viewer = code
                     ? yield logInViaGoogle(code, token, db, res)
                     : yield logInViaCookie(token, db, req, res);

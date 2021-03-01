@@ -6,6 +6,7 @@ exports.typeDefs = apollo_server_express_1.gql `
     enum ReviewType {
         RECIPE
         RESTAURANT
+        PRODUCT
     }
 
     enum ReviewsFilter {
@@ -18,6 +19,7 @@ exports.typeDefs = apollo_server_express_1.gql `
         ALL
         RESTAURANT
         RECIPE
+        PRODUCT
     }
 
     type User {
@@ -42,7 +44,9 @@ exports.typeDefs = apollo_server_express_1.gql `
         url: String
         country: String
         admin: String
-        highlights: [String!]
+        highlights: [String!]!
+        lowlights: [String!]!
+        video: String
     }
 
     type Reviews {
@@ -72,7 +76,9 @@ exports.typeDefs = apollo_server_express_1.gql `
         rating: Int!
         url: String
         address: String
-        highlights: [String!]
+        highlights: [String!]!
+        lowlights: [String!]!
+        video: String
     }
 
     type Query {

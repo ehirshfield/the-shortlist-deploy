@@ -24,8 +24,10 @@ const verifyAddReviewInput = ({ title, body, type, rating, subtitle, }) => {
     if (body.length > 9000) {
         throw new Error('Review body must be under 9000 characters');
     }
-    if (type !== types_1.ReviewType.Recipe && type !== types_1.ReviewType.Restaurant) {
-        throw new Error('Review type must be either a recipe or restaurant!');
+    if (type !== types_1.ReviewType.Recipe &&
+        type !== types_1.ReviewType.Restaurant &&
+        type !== types_1.ReviewType.Product) {
+        throw new Error('Review type must be either a recipem, restaurant or product!');
     }
     if (rating < 0 || rating > 10) {
         throw new Error('Review rating must be between 1 and 10');
@@ -93,7 +95,7 @@ exports.reviewResolvers = {
     Mutation: {
         addReview: (_root, { input }, { db, req }) => __awaiter(void 0, void 0, void 0, function* () {
             verifyAddReviewInput(input);
-            const viewer = yield utils_1.authorize(db, req);
+            const viewer = yield utils_1.authorizeToken(db, req);
             if (!viewer) {
                 throw new Error('Viewer cannot be found');
             }

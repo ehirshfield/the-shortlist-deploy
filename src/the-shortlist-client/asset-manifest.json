@@ -1,21 +1,20 @@
 {
   "files": {
     "main.css": "/static/css/main.da33e9f2.chunk.css",
-    "main.js": "/static/js/main.c9dfd84f.chunk.js",
-    "main.js.map": "/static/js/main.c9dfd84f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.b5379804.js",
-    "runtime-main.js.map": "/static/js/runtime-main.b5379804.js.map",
+    "main.js": "/static/js/main.23b33e77.chunk.js",
+    "main.js.map": "/static/js/main.23b33e77.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5c7436f8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5c7436f8.js.map",
     "static/css/2.6f338a1f.chunk.css": "/static/css/2.6f338a1f.chunk.css",
-    "static/js/2.1377e41b.chunk.js": "/static/js/2.1377e41b.chunk.js",
-    "static/js/2.1377e41b.chunk.js.map": "/static/js/2.1377e41b.chunk.js.map",
-    "static/js/3.0ad879e7.chunk.js": "/static/js/3.0ad879e7.chunk.js",
-    "static/js/3.0ad879e7.chunk.js.map": "/static/js/3.0ad879e7.chunk.js.map",
+    "static/js/2.1b2cd48f.chunk.js": "/static/js/2.1b2cd48f.chunk.js",
+    "static/js/2.1b2cd48f.chunk.js.map": "/static/js/2.1b2cd48f.chunk.js.map",
+    "static/js/3.6e1cbcfc.chunk.js": "/static/js/3.6e1cbcfc.chunk.js",
+    "static/js/3.6e1cbcfc.chunk.js.map": "/static/js/3.6e1cbcfc.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.6f338a1f.chunk.css.map": "/static/css/2.6f338a1f.chunk.css.map",
     "static/css/main.da33e9f2.chunk.css.map": "/static/css/main.da33e9f2.chunk.css.map",
-    "static/js/2.1377e41b.chunk.js.LICENSE.txt": "/static/js/2.1377e41b.chunk.js.LICENSE.txt",
+    "static/js/2.1b2cd48f.chunk.js.LICENSE.txt": "/static/js/2.1b2cd48f.chunk.js.LICENSE.txt",
     "static/media/los-angeles.44220702.jpg": "/static/media/los-angeles.44220702.jpg",
-    "static/media/map-background.c8201cdd.jpg": "/static/media/map-background.c8201cdd.jpg",
     "static/media/new-york.a1bb9f10.jpg": "/static/media/new-york.a1bb9f10.jpg",
     "static/media/recipes-text.0147aed2.jpg": "/static/media/recipes-text.0147aed2.jpg",
     "static/media/restaurants-text2.62285dff.jpg": "/static/media/restaurants-text2.62285dff.jpg",
@@ -23,10 +22,10 @@
     "static/media/san-fran.f63a6042.jpg": "/static/media/san-fran.f63a6042.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b5379804.js",
+    "static/js/runtime-main.5c7436f8.js",
     "static/css/2.6f338a1f.chunk.css",
-    "static/js/2.1377e41b.chunk.js",
+    "static/js/2.1b2cd48f.chunk.js",
     "static/css/main.da33e9f2.chunk.css",
-    "static/js/main.c9dfd84f.chunk.js"
+    "static/js/main.23b33e77.chunk.js"
   ]
 }

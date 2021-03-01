@@ -12,4 +12,5 @@ var TypesFilter;
     TypesFilter["ALL"] = "ALL";
     TypesFilter["RESTAURANT"] = "RESTAURANT";
     TypesFilter["RECIPE"] = "RECIPE";
+    TypesFilter["PRODUCT"] = "PRODUCT";
 })(TypesFilter = exports.TypesFilter || (exports.TypesFilter = {}));
